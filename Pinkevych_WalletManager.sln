@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pinkevych_WalletManager", "Pinkevych_WalletManager\Pinkevych_WalletManager.csproj", "{82641EB8-E75B-45C7-A7EF-37E6F0B66206}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{45A17D65-4355-489F-985E-45FB495F143B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82641EB8-E75B-45C7-A7EF-37E6F0B66206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82641EB8-E75B-45C7-A7EF-37E6F0B66206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82641EB8-E75B-45C7-A7EF-37E6F0B66206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82641EB8-E75B-45C7-A7EF-37E6F0B66206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45A17D65-4355-489F-985E-45FB495F143B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45A17D65-4355-489F-985E-45FB495F143B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45A17D65-4355-489F-985E-45FB495F143B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45A17D65-4355-489F-985E-45FB495F143B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0C5A5CB9-FC35-4C87-BFCF-C72CF9837085}
+	EndGlobalSection
+EndGlobal
