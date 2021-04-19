@@ -1,6 +1,4 @@
-﻿using Pinkevych.FinanceManager.FinanceWPF;
-using Pinkevych_WalletManager.WalletsWPF;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Pinkevych_WalletManager
+namespace Pinkevych_WalletManager.WalletsWPF.Wallets
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for WalletDeletingView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class WalletDeletingView : UserControl
     {
-        public MainWindow()
+        public WalletDeletingView()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
     }
 }

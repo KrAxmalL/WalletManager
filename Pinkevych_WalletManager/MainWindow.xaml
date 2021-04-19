@@ -3,10 +3,23 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Pinkevych_WalletManager"
+        xmlns:local="clr-namespace:Pinkevych_WalletManager" xmlns:local1="clr-namespace:Pinkevych_WalletManager.WalletsWPF" xmlns:local11="clr-namespace:Pinkevych_WalletManager.WalletsWPF.Authentification"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" FontSize="18">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*" MinHeight="50"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="0.5*" MinHeight="50"></RowDefinition>
+        </Grid.RowDefinitions>
 
+        <!--Header -->
+        <local1:Header Grid.Row="0"></local1:Header>
+
+        <!--Authentification menu -->
+        <local1:MainView Grid.Row="1"></local1:MainView>
+
+        <!--Footer -->
+        <local1:Footer Grid.Row="2"></local1:Footer>
     </Grid>
 </Window>

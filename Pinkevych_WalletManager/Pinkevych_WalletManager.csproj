@@ -8,4 +8,22 @@
     <RootNamespace>Pinkevych_WalletManager.WalletsWPF</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Images\Wallet.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.Core" Version="8.0.0.1909" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataStorage\DataStorage.csproj" />
+    <ProjectReference Include="..\Models\Models.csproj" />
+    <ProjectReference Include="..\Services\Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Wallet.jpg" />
+  </ItemGroup>
+
 </Project>

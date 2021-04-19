@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Pinkevych_WalletManager.WalletsWPF.Header"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Pinkevych_WalletManager.WalletsWPF"
+             mc:Ignorable="d">
+    <!--Main header content-->
+    <Border Background="Aquamarine">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Image Source="Images/Wallet.jpg" Height="45" Stretch="Uniform" Margin="10"></Image>
+            <TextBlock Text="Finance Manager" FontSize="30" VerticalAlignment="Center"></TextBlock>
+        </StackPanel>
+    </Border>
+</UserControl>
