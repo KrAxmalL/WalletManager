@@ -25,7 +25,7 @@ namespace Pinkevych_WalletManager.WalletsWPF.Wallets
         public ObservableCollection<WalletsDetailsViewModel> Wallets
         {
             get
-            {
+            {                
                 return _wallets;
             }
 
@@ -81,14 +81,7 @@ namespace Pinkevych_WalletManager.WalletsWPF.Wallets
 
         public void ClearSensitiveData()
         {
-            if (_wallets != null)
-            {
-                Trace.WriteLine("Wallets in main wallets view: " + _wallets.Count);
-            }
-            else
-            {
-                Trace.WriteLine("Wallets in main wallets view: null");
-            }
+            _currentWallet = null;
         }
     }
 }

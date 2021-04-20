@@ -15,7 +15,7 @@
             <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <!--Collection-->
-        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Center">
             <TextBlock Margin="10, 10, 10, 0">Choose a wallet to show categories:</TextBlock>
             <ComboBox  Name="CmbWallets" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=Wallets}" Margin="10" HorizontalAlignment="Stretch" SelectedIndex="0" SelectedItem="{Binding CurrentWallet, Mode=TwoWay}"></ComboBox>
         </StackPanel>

@@ -80,20 +80,20 @@ namespace Pinkevych_WalletManager.WalletsWPF.Transactions
             }
             
         }
+
+        public Guid TransactionGuid
+        {
+            get
+            {
+                return _transaction.Guid;
+            }
+        }
+
+            
+
         public TransactionsDetailsViewModel(Transaction current)
         {
             _transaction = current;
-
-
-            /*foreach(var guid in _transaction.TransactionsGuids)
-            {
-                var transaction = RuntimeDataStorage.Transactions.FirstOrDefault(transaction => (transaction.Guid == guid));
-                if (transaction != null)
-                {
-                    _transactionsNames.Add(transaction.Name);
-                }
-            }*/
-            //need to refresh the list of transactions
         }
     }
 }

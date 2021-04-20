@@ -71,7 +71,5 @@ namespace Pinkevych_WalletManager.WalletsWPF.Transactions
         {
             _currentWallet = null;
         }
-
-
     }
 }

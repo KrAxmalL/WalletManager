@@ -38,11 +38,10 @@ namespace Pinkevych_WalletManager.WalletsWPF.Transactions
         {
             get
             {
+                _transactions.Clear();
                 var transactionsOfWallet = RuntimeDataStorage.TransactionsViewModels;
                 foreach (var transaction in transactionsOfWallet)
                 {
-                    Trace.WriteLine("Current transaction wallet id: " + transaction.TransactionWalletGuid);
-                    Trace.WriteLine("Current wallet id: " + _wallet.Guid);
                     if (transaction.TransactionWalletGuid == _wallet.Guid && !_transactions.Contains(transaction))
                     {
                         _transactions.Add(transaction);
@@ -98,8 +97,6 @@ namespace Pinkevych_WalletManager.WalletsWPF.Transactions
             var transactionsOfWallet = RuntimeDataStorage.Transactions;
             foreach (var transaction in transactionsOfWallet)
             {
-                Trace.WriteLine("Current transaction wallet id: " + transaction.WalletGuid);
-                Trace.WriteLine("Current wallet id: " + _wallet.Guid);
                 if (transaction.WalletGuid == _wallet.Guid)
                 {
                     _transactions.Add(new TransactionsDetailsViewModel(transaction));
@@ -117,14 +114,7 @@ namespace Pinkevych_WalletManager.WalletsWPF.Transactions
 
         public void ClearSensitiveData()
         {          
-            if (_transactions != null)
-            {
-                Trace.WriteLine("Transactions in main transactions view: " + _transactions.Count);
-            }
-            else
-            {
-                Trace.WriteLine("Transactions in main transactions view: null");
-            }
+
         }
 
     }

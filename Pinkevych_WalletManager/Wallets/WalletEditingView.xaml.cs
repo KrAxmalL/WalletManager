@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Pinkevych_WalletManager.WalletsWPF.Wallets
         public WalletEditingView()
         {
             InitializeComponent();
+            CmbCurrencies.ItemsSource = Currencies.listToShow;
         }
     }
 }

@@ -132,9 +132,8 @@ namespace Pinkevych_WalletManager.WalletsWPF.Wallets
                     await WalletsService.AddWallet(_walletToAdd);
                     _wallets.Add(_walletToAdd);
                     _walletsViewModels.Add(new WalletsDetailsViewModel(_walletToAdd));
-                    Trace.WriteLine("Added wallet guid: " + _walletToAdd.Guid.ToString());
                     _walletToAdd = new Wallet(new Guid(), "", "", Currencies.Currency.Dollar, 0, 0, RuntimeDataStorage.CurrentUser.Guid);
-                    Trace.WriteLine(_walletsViewModels.Count);
+
                     MessageBox.Show("Successfully added new wallet!");
                     _goToMainWallets.Invoke();
                 }
@@ -164,6 +163,8 @@ namespace Pinkevych_WalletManager.WalletsWPF.Wallets
 
         public void ClearSensitiveData()
         {
+            _wallets = RuntimeDataStorage.Wallets;
+            _walletsViewModels = RuntimeDataStorage.WalletsViewModels;
             WalletName = "";
             WalletDescription = "";
             WalletBalance = 0;

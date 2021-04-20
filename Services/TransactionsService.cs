@@ -1,6 +1,7 @@
 ﻿using DataStorage;
 using Models;
 using Models.Transactions;
+using Models.Wallets;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -55,7 +56,6 @@ namespace Services
 
         public static async Task<bool> AddTransaction(Transaction transactionToAdd)
         {
-            //var allTransactions = await _storage.GetAllAsync();
             DbTransaction dbTransactionToAdd = new DbTransaction(transactionToAdd.AmountOfMoney, transactionToAdd.Currency, transactionToAdd.Description,
                                                                   transactionToAdd.Date, transactionToAdd.WalletGuid, transactionToAdd.OwnerGuid);
             await _storage.AddOrUpdateAsync(dbTransactionToAdd);
@@ -65,30 +65,38 @@ namespace Services
         public static async Task<bool> DeleteTransaction(Transaction transactionToDelete)
         {
             var transactions = await _storage.GetAllAsync();
+            var transaction = transactions.FirstOrDefault(trans => trans.Guid == transactionToDelete.Guid);
+            if (transaction == null)
+            {
+                throw new Exception("Such transaction doesn't exist!");
+            }
             _storage.Remove(transactionToDelete.Guid);
             return true;
         }
 
-        //change arguments list to edit transactions
-        public static async Task<bool> EditTransaction(Transaction transactionToEdit, string newName, string newDescription, Currencies.Currency newCurrency)
+        public static async Task<bool> EditTransaction(Transaction transactionToEdit, Wallet wallet, decimal newAmount, DateTimeOffset newDate, string newDescription, Currencies.Currency newCurrency)
         {
-            if (newName == null)
+            var transactions = await _storage.GetAllAsync();
+            Trace.WriteLine("TransactionToEdit guid:" + transactionToEdit.Guid);
+            _storage.Remove(transactionToEdit.Guid);
+            try
             {
-                throw new Exception("Name of transaction can't be blank!");
+                wallet.RemoveTransaction(transactionToEdit);
             }
-            else
+            catch(Exception ex)
             {
-                var transactions = await _storage.GetAllAsync();
-                Trace.WriteLine("TransactionToEdit guid:" + transactionToEdit.Guid);
-                _storage.Remove(transactionToEdit.Guid);
-                transactionToEdit.Description = newDescription;
-                transactionToEdit.Currency = newCurrency;
+                Trace.WriteLine(ex.Message);
+            }
+            transactionToEdit.AmountOfMoney = newAmount;
+            transactionToEdit.Date = newDate;
+            transactionToEdit.Description = newDescription;
+            transactionToEdit.Currency = newCurrency;           
+            wallet.AddTransaction(transactionToEdit);
 
-                /*DbTransaction dbTransactionToEdit = new DbTransaction(transaction.AmountOfMoney, transaction.Currency, transaction.Description,
-                                                                      transaction.Date, transaction.Category, transaction.WalletGuid, transaction.OwnerGuid);
-                await _storage.AddOrUpdateAsync(dbTransactionToEdit);*/
-                return true;
-            }
+            DbTransaction dbTransactionToEdit = new DbTransaction(transactionToEdit.AmountOfMoney, transactionToEdit.Currency, transactionToEdit.Description,
+                                                                  transactionToEdit.Date, transactionToEdit.WalletGuid, transactionToEdit.OwnerGuid);
+            await _storage.AddOrUpdateAsync(dbTransactionToEdit);
+            return true;
         }
     }
 }

@@ -88,10 +88,17 @@ namespace Pinkevych_WalletManager.WalletsWPF.Wallets
             }
         }
 
+        public Guid WalletGuid
+        {
+            get
+            {
+                return _wallet.Guid;
+            }
+        }
+
 
         public WalletsDetailsViewModel(Wallet current)
         {
-            ///income and spending dont change after addding transactions
             _wallet = current;
         }
     }

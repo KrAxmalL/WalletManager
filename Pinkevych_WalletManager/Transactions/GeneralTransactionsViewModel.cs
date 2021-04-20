@@ -1,5 +1,6 @@
 ﻿using Models.Users;
 using Models.Wallets;
+using Pinkevych_WalletManager.WalletsWPF.Transactions;
 using Pinkevych_WalletManager.WalletsWPF.Navigation;
 using Pinkevych_WalletManager.WalletsWPF.RuntimeStorage;
 using Services;
@@ -17,7 +18,7 @@ namespace Pinkevych_WalletManager.WalletsWPF.Transactions
         private User _currentActiveUser;
         private Wallet _currentWallet;
 
-        private Dictionary<Wallet, List<INavigatable<TransactionNavigatableTypes>>> dict;
+        public static Dictionary<Wallet, List<INavigatable<TransactionNavigatableTypes>>> dict = new Dictionary<Wallet, List<INavigatable<TransactionNavigatableTypes>>>();
 
         private Action _goToWallets;
 
@@ -26,7 +27,7 @@ namespace Pinkevych_WalletManager.WalletsWPF.Transactions
             _goToWallets = goToWallets;
             _mainStorage = new RuntimeDataStorage();
             _currentActiveUser = AuthentificationService.ActiveUser;
-            dict = new Dictionary<Wallet, List<INavigatable<TransactionNavigatableTypes>>>();
+            //dict = new Dictionary<Wallet, List<INavigatable<TransactionNavigatableTypes>>>();
             Navigate(TransactionNavigatableTypes.WalletToTransaction);
         }
 
@@ -60,11 +61,11 @@ namespace Pinkevych_WalletManager.WalletsWPF.Transactions
                                                      () => Navigate(TransactionNavigatableTypes.DeletingTransaction),
                                                      _goToWallets, _currentWallet);
                     
-                case TransactionNavigatableTypes.AddingTransaction: return new TransactionAddingViewModel(() => Navigate(TransactionNavigatableTypes.MainTransactions), _currentWallet);
+                case TransactionNavigatableTypes.AddingTransaction: return new TransactionAddingViewModel(() => Navigate(TransactionNavigatableTypes.MainTransactions), ref _currentWallet);
 
-                case TransactionNavigatableTypes.EditingTransaction: return new TransactionEditingViewModel(/*() => Navigate(TransactionNavigatableTypes.MainTransactions), _currentWallet*/);
+                case TransactionNavigatableTypes.EditingTransaction: return new TransactionEditingViewModel(() => Navigate(TransactionNavigatableTypes.MainTransactions), _currentWallet);
 
-                case TransactionNavigatableTypes.DeletingTransaction: return new TransactionDeletingViewModel(/*() => Navigate(TransactionNavigatableTypes.MainTransactions), _currentWallet*/);
+                case TransactionNavigatableTypes.DeletingTransaction: return new TransactionDeletingViewModel(() => Navigate(TransactionNavigatableTypes.MainTransactions), ref _currentWallet);
 
                 case TransactionNavigatableTypes.WalletToTransaction: return new WalletToTransactionViewModel(_goToWallets, () => Navigate(TransactionNavigatableTypes.MainTransactions));
 

@@ -11,7 +11,7 @@
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
-            <TextBlock Text="Choose wallet to celete:" Margin="10, 10, 10, 0"></TextBlock>
+            <TextBlock Text="Choose wallet to delete:" Margin="10, 10, 10, 0"></TextBlock>
             <ComboBox  Name="CmbWallets" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=Wallets}" Margin="10" HorizontalAlignment="Stretch" SelectedIndex="0" SelectedItem="{Binding WalletToDelete, Mode=TwoWay}"></ComboBox>
         </StackPanel>
 

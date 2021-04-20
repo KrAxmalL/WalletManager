@@ -97,8 +97,6 @@ namespace Pinkevych_WalletManager.WalletsWPF.Wallets
                             break;
                         }
                     }
-                    Trace.WriteLine("Deleting guid: " + _walletToDelete.Guid.ToString());
-                    Trace.WriteLine(_walletsViewModels.Count);
                     MessageBox.Show("Successfully deleted wallet!");
                     _goToMainWallets.Invoke();
                 }

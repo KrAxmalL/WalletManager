@@ -3,6 +3,8 @@ using Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,13 +25,13 @@ namespace Services
 
         public async Task<User> AuthentificateUser(AuthUser candidate)
         {
-            //Thread.Sleep(2000);
             if (String.IsNullOrWhiteSpace(candidate.Login) || String.IsNullOrWhiteSpace(candidate.Password))
             {
                 throw new ArgumentException("Login or password is empty!");
             }
 
             var users = await _storage.GetAllAsync();
+
             var dbUser = users.FirstOrDefault(user => user.Login == candidate.Login && user.Password == candidate.Password);
             if (dbUser == null)
             {
@@ -41,8 +43,6 @@ namespace Services
 
         public async Task<bool> RegisterUser(RegistrationUser candidate)
         {
-            Thread.Sleep(2000);
-
             var users = await _storage.GetAllAsync();
             foreach (var userToShow in users)
             {
@@ -59,6 +59,16 @@ namespace Services
                 || String.IsNullOrWhiteSpace(candidate.LastName) || String.IsNullOrWhiteSpace(candidate.Email))
             {
                 throw new ArgumentException("One or more fields is empty!");
+            }
+
+            if (candidate.Login.Length < 3)
+            {
+                throw new Exception("Login must be 3 symbols or longer!");
+            }
+
+            if (candidate.Password.Length < 5)
+            {
+                throw new Exception("Password must be 5 symbols or longer!");
             }
 
             dbUser = new DbUser(candidate.FirstName, candidate.LastName, candidate.Email, candidate.Login, candidate.Password);

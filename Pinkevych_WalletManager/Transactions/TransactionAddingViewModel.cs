@@ -20,7 +20,6 @@ namespace Pinkevych_WalletManager.WalletsWPF.Transactions
 {
     public class TransactionAddingViewModel : INotifyPropertyChanged, INavigatable<TransactionNavigatableTypes>
     {
-        //make getting of chosen wallet
         private Transaction _transactionToAdd;
         private List<Transaction> _transactions;
         private ObservableCollection<TransactionsDetailsViewModel> _transactionsViewModels;
@@ -113,15 +112,13 @@ namespace Pinkevych_WalletManager.WalletsWPF.Transactions
 
         public DelegateCommand GoToMainTransactionsCommand { get; }
 
-        public TransactionAddingViewModel(Action goToMainTransactions, Wallet wallet)
+        public TransactionAddingViewModel(Action goToMainTransactions, ref Wallet wallet)
         {
             _wallet = wallet;
             _transactions = RuntimeDataStorage.Transactions;
             _transactionToAdd = new Transaction(new Guid(), 0, Currencies.Currency.Dollar, "", new DateTimeOffset(),
                                                                 _wallet.Guid, AuthentificationService.ActiveUser.Guid);
-            Trace.WriteLine("Transaction adding view _transactions: " + _transactions.Count);
             _transactionsViewModels = RuntimeDataStorage.TransactionsViewModels;
-            Trace.WriteLine("Transaction adding view _transactionsViewModels: " + _transactionsViewModels.Count);
             AddTransactionCommand = new DelegateCommand(AddTransactionToCollection, isAddingEnabled);
             _goToMainTransactions = goToMainTransactions;
             GoToMainTransactionsCommand = new DelegateCommand(_goToMainTransactions);
@@ -133,19 +130,16 @@ namespace Pinkevych_WalletManager.WalletsWPF.Transactions
             try
             {
                 IsEnabled = false;
-                Trace.Write("Adding transaction to wallet: " + _transactionToAdd.WalletGuid);
+
                 await TransactionsService.AddTransaction(_transactionToAdd);
                 _transactions.Add(_transactionToAdd);
 
                 TransactionsDetailsViewModel _newViewModel = new TransactionsDetailsViewModel(_transactionToAdd);
                 _transactionsViewModels.Add(_newViewModel);
-
-                Trace.WriteLine("Added transaction guid: " + _transactionToAdd.Guid.ToString());
-
                 _transactionToAdd = new Transaction(new Guid(), 0, Currencies.Currency.Dollar, "", new DateTimeOffset(),
                                                                 _wallet.Guid, AuthentificationService.ActiveUser.Guid);
                 _wallet.AddTransaction(_transactionToAdd);
-                Trace.WriteLine("Transactions view models: " + _transactionsViewModels.Count);
+
                 MessageBox.Show("Successfully added new transaction!");
                 _goToMainTransactions.Invoke();
             }

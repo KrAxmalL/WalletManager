@@ -47,6 +47,14 @@ namespace Models.Wallets
             get { return _ownerGuid; }
         }
 
+        public int NumberOfTransactions
+        {
+            get
+            {
+                return _transactions.Count;
+            }
+        }
+
         public Guid Guid
         {
             get { return _guid; }
@@ -152,6 +160,14 @@ namespace Models.Wallets
             }
             else
             {
+                if(transaction.AmountOfMoney < 0)
+                {
+                    _currentBalance -= Currencies.Convert(transaction.Currency, this.Currency, transaction.AmountOfMoney);
+                }
+                else
+                {
+                    _currentBalance += Currencies.Convert(transaction.Currency, this.Currency, transaction.AmountOfMoney);
+                }
                 return _transactions.Remove(transaction);
             }
         }

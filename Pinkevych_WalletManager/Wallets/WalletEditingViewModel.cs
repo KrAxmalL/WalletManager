@@ -2,6 +2,7 @@
 using Models.Wallets;
 using Pinkevych_WalletManager.WalletsWPF.Navigation;
 using Pinkevych_WalletManager.WalletsWPF.RuntimeStorage;
+using Pinkevych_WalletManager.WalletsWPF.Transactions;
 using Prism.Commands;
 using Services;
 using System;
@@ -151,11 +152,9 @@ namespace Pinkevych_WalletManager.WalletsWPF.Wallets
                             break;
                         }
                     }
-                    Trace.WriteLine("Editable guid: " + _walletToEdit.Guid.ToString());
                     _wallets.Add(_walletToEdit);
-                    OnPropertyChanged(nameof(Wallets));
+                    OnPropertyChanged(nameof(Wallets));             
                     _walletsViewModels.Add(new WalletsDetailsViewModel(_walletToEdit));
-                    Trace.WriteLine(_walletsViewModels.Count);
                     MessageBox.Show("Successfully edited wallet!");
                     _goToMainWallets.Invoke();
                 }
@@ -185,6 +184,8 @@ namespace Pinkevych_WalletManager.WalletsWPF.Wallets
 
         public void ClearSensitiveData()
         {
+            _wallets = RuntimeDataStorage.Wallets;
+            _walletsViewModels = RuntimeDataStorage.WalletsViewModels;
             WalletToEdit = null;
             WalletName = "";
             WalletDescription = "";

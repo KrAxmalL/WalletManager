@@ -26,27 +26,6 @@ namespace Pinkevych_WalletManager.WalletsWPF.Wallets
             Navigate(WalletNavigatableTypes.MainWallets);
         }
 
-        /*private void LoadData()
-        {
-            _userWallets = WalletsService.GetWalletsNotAsync();
-            _walletsViewModels = new ObservableCollection<WalletsDetailsViewModel>();
-            foreach (var wallet in _userWallets)
-            {
-                _walletsViewModels.Add(new WalletsDetailsViewModel(wallet));
-            }
-        }
-        private async void LoadDataAsync()
-        {
-            _userWallets = await WalletsService.GetWalletsAsync();
-            _walletsViewModels = new ObservableCollection<WalletsDetailsViewModel>();
-            foreach (var wallet in _userWallets)
-            {
-                _walletsViewModels.Add(new WalletsDetailsViewModel(wallet));
-            }
-            Trace.WriteLine(_walletsViewModels.Count);
-            //Navigate(WalletNavigatableTypes.MainWallets);
-        }*/
-
         protected override INavigatable<WalletNavigatableTypes> CreateViewModel(WalletNavigatableTypes type)
         {
             switch (type)

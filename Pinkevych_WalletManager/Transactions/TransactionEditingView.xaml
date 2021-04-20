@@ -4,8 +4,50 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Pinkevych_WalletManager.WalletsWPF.Transactions"
-             mc:Ignorable="d">
+             mc:Ignorable="d" IsEnabled="{Binding IsEnabled}">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <TextBlock Text="Choose transaction to edit:" Margin="10, 10, 10, 0"></TextBlock>
+            <ComboBox  Name="CmbTransactions" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Path=Transactions}" Margin="10" HorizontalAlignment="Stretch" SelectedIndex="0" SelectedItem="{Binding TransactionToEdit, Mode=TwoWay}"></ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
+            <TextBlock Text="New Amount:" Margin="10, 10, 10, 0"></TextBlock>
+            <TextBox Name="TbAmount"  Margin="10" HorizontalAlignment="Stretch" Text="{Binding TransactionAmount, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+            <TextBlock Text="New Description:" Margin="10, 10, 10, 0"></TextBlock>
+            <TextBox Name="TbDescription"  Margin="10" HorizontalAlignment="Stretch" Text="{Binding TransactionDescription, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2">
+            <TextBlock Text="New Date:" Margin="10, 10, 10, 0"></TextBlock>
+            <TextBox Name="TbDate"  Margin="10" HorizontalAlignment="Stretch" Text="{Binding TransactionDate, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.ColumnSpan="2">
+            <TextBlock Text="Choose Currency:" Margin="10, 10, 10, 0"></TextBlock>
+            <ComboBox  Name="CmbCurrencies"  Margin="10" HorizontalAlignment="Stretch" SelectedIndex="0" SelectedItem="{Binding TransactionCurrency}"></ComboBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.ColumnSpan="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Name="SaveChanges" Grid.Column="0" Margin="10" Width="Auto" Height="Auto" Command="{Binding EditTransactionCommand}">Save changes</Button>
+                <Button Name="Back" Grid.Column="1" Margin="10" Width="Auto" Height="Auto" Command="{Binding GoToMainTransactionsCommand}">Back</Button>
+            </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>
